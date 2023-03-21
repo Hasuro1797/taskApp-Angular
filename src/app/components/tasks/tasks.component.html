@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <input type="text" [(ngModel)]="taskName" (keyup.enter)="AddTask()" class="form-control form-control-lg" placeholder="Enter a task...">
+    </div>
+    <div class="col-lg-6 offset-lg-3 mt-4">
+      <div class="card p-3" *ngIf="taskList.length === 0">
+        <h6>There aren't task to show</h6>
+      </div>
+      <ul class="list-group" *ngIf="taskList.length">
+        <li class="list-group-item " *ngFor="let task of taskList; let i = index">
+          <div *ngIf="task.update" class="d-flex justify-content-between align-items-center">
+            <input type="text" [(ngModel)]="task.nameUpdated" class="form-control form-control-md me-3" placeholder="Task...">
+            <div class="iconsContainer">
+              <span class="text-success cursor" (click)="ConfirmUpdate(i, task)">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              <span class="text-danger cursor" (click)="CancelUpdate(i, task)">
+                <i class="fa-sharp fa-solid fa-xmark"></i>
+              </span>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between pt-2 pb-2" *ngIf="!task.update">
+            <span class="cursor" (click)="UpdateStatusTask(i,task)">
+              <i [ngClass]="task.status ? 'fa-solid fa-circle-check text-success':'fa-sharp fa-regular fa-circle'"></i>
+            </span>
+            {{task.name}}
+            <div class="iconsContainer">
+              <span class="text-info cursor" (click)="UpdateNameTask(task)">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </span>
+              <span class="text-danger cursor" (click)="DeleteTask(i)">
+                <i class="fa-solid fa-trash"></i>
+              </span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

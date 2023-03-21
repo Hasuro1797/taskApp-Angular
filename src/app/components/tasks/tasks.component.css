@@ -1,0 +1,14 @@
+input{
+  text-align: center;
+}
+.form-control-lg{
+  font-size: 1.8rem;
+}
+.cursor{
+  cursor: pointer;
+  
+}
+.iconsContainer{
+  display: flex;
+  gap: 1rem;
+}
